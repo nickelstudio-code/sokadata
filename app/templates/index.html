@@ -13,102 +13,476 @@
             --accent: #e8d98a; --accent-dim: #b8ac6a;
             --red-soft: #e08a8a; --white: #ffffff;
         }
+        body.light {
+            --bg: #fafafa; --bg-card: #ffffff; --bg-hover: #f5f5f5;
+            --border: #e5e5e5; --border-strong: #d0d0d0;
+            --text: #0a0a0a; --text-mid: #666; --text-dim: #999;
+            --accent: #a89430; --accent-dim: #8a7a20;
+            --red-soft: #c05a5a; --white: #0a0a0a;
+        }
         body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; }
-        .topbar { max-width: 1240px; margin: 0 auto; padding: 20px 24px 0; display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
-        .lang-switch { display: flex; gap: 4px; }
+        .topbar { max-width: 1240px; margin: 0 auto; padding: 20px 24px 0; display: flex; justify-content: flex-end; gap: 4px; }
         .lang-btn { padding: 8px 14px; background: transparent; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.15s; }
         .lang-btn:hover { border-color: var(--border-strong); color: var(--text); }
+        .topbar {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px 24px 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+        }
+        .lang-switch { display: flex; gap: 4px; }
+        .theme-btn {
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1;
+            transition: all 0.15s;
+            margin-left: 4px;
+        }
+        .theme-btn:hover {
+            border-color: var(--accent-dim);
+            color: var(--accent);
+        }
         .lang-btn.active { background: var(--white); color: var(--bg); border-color: var(--white); }
-        .theme-btn { padding: 8px 14px; background: transparent; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; font-size: 1rem; line-height: 1; transition: all 0.15s; }
-        .theme-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
-        
         .hero { border-bottom: 1px solid var(--border); padding: 48px 24px 56px; position: relative; }
         .hero::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 80px; height: 1px; background: var(--accent); }
         .hero-inner { max-width: 1240px; margin: 0 auto; }
         .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.68rem; font-weight: 600; color: var(--text-dim); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px; }
         .hero-label::before { content: ""; width: 24px; height: 1px; background: var(--accent); }
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.95; color: var(--white); margin-bottom: 20px; }
+        .sokadata-link {
+            color: inherit;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.15s;
+        }
+        .sokadata-link:hover {
+            opacity: 0.8;
+        }
         .hero h1 .accent { color: var(--accent); }
         .hero p { font-size: 1rem; color: var(--text-mid); max-width: 560px; line-height: 1.6; }
-        
-        .hero-stats-wrapper { display: flex; align-items: stretch; gap: 24px; margin-top: 48px; flex-wrap: wrap; }
+        .hero-stats-wrapper {
+            display: flex;
+            align-items: stretch;
+            gap: 24px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: transparent;
+            border: 1px solid var(--accent-dim);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            align-self: center;
+            white-space: nowrap;
+        }
+        .hero-btn-secondary {
+            border-color: var(--border-strong);
+            color: var(--text-mid);
+        }
+        .hero-btn-secondary:hover {
+            background: var(--white);
+            color: var(--bg);
+            border-color: var(--white);
+        }
+        .hero-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+        .hero-btn span:first-child {
+            font-size: 0.9rem;
+        }
         .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); min-width: 500px; flex: 1; max-width: 700px; }
         .stat { background: var(--bg); padding: 20px 24px; }
         .stat-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px; }
         .stat-value { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
-        .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: transparent; border: 1px solid var(--accent-dim); color: var(--accent); text-decoration: none; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.2s; align-self: center; white-space: nowrap; }
-        .hero-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-        
         .main { max-width: 1240px; margin: 0 auto; padding: 40px 24px 100px; }
         .search-section { margin-bottom: 40px; }
         .search-input { width: 100%; padding: 18px 24px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); font-size: 1rem; outline: none; margin-bottom: 24px; }
+        .search-input::placeholder { color: var(--text-dim); }
+        .search-input:focus { border-color: var(--accent-dim); }
         .competitions { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--border); }
         .competitions a { padding: 12px 20px; color: var(--text-mid); text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-right: 1px solid var(--border); transition: all 0.15s; }
         .competitions a:last-child { border-right: none; }
         .competitions a:hover { background: var(--bg-hover); color: var(--text); }
         .competitions a.active { background: var(--white); color: var(--bg); }
-        
         .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
         .section-title h2 { font-size: 0.72rem; font-weight: 700; color: var(--text); letter-spacing: 3px; text-transform: uppercase; }
         .section-title .count { font-size: 0.72rem; color: var(--text-dim); }
-        
-        .home-match { background: var(--bg-card); border: 1px solid var(--border); padding: 20px 24px; margin-bottom: 8px; display: flex; align-items: center; gap: 20px; transition: all 0.15s; }
-        .home-match:hover { border-color: var(--border-strong); background: var(--bg-hover); }
-        .home-match-time { display: flex; flex-direction: column; align-items: center; min-width: 80px; }
-        .home-match-time .time { font-size: 0.85rem; color: var(--accent-dim); font-weight: 700; }
-        .home-match-time .date { font-size: 0.62rem; color: var(--text-dim); margin-top: 2px; text-transform: uppercase; }
-        .home-match-comp { font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; min-width: 130px; }
-        .home-match-teams { display: flex; align-items: center; gap: 10px; flex: 1; font-size: 0.95rem; font-weight: 700; color: var(--white); }
-        .home-match-teams img { width: 22px; height: 22px; object-fit: contain; }
-        .home-match-teams .vs { color: var(--text-dim); font-weight: 300; margin: 0 6px; }
-        .home-match-status { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 12px; border-radius: 4px; min-width: 100px; text-align: center; }
+        .flag { font-size: 1.1rem; margin-right: 8px; vertical-align: middle; }
+        .home-match {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.15s;
+        }
+        .home-match:hover {
+            border-color: var(--border-strong);
+            background: var(--bg-hover);
+        }
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff2e2e;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+            animation: pulse-live 1.2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(255, 46, 46, 0.7);
+        }
+        @keyframes pulse-live {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 46, 46, 0.7);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(255, 46, 46, 0);
+                opacity: 1;
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 46, 46, 0);
+                opacity: 1;
+            }
+        }
+        .home-match.is-live {
+            border-left: 3px solid #ff2e2e;
+            background: linear-gradient(90deg, rgba(255, 46, 46, 0.06), var(--bg-card) 30%);
+        }
+        .home-match.is-live:hover {
+            background: linear-gradient(90deg, rgba(255, 46, 46, 0.1), var(--bg-hover) 30%);
+        }
+        .status-live {
+            background: rgba(255, 46, 46, 0.15) !important;
+            color: #ff6b6b !important;
+            animation: pulse-live 1.5s ease-in-out infinite;
+        }
+        .home-match-time {
+            min-width: 80px;
+            text-align: center;
+        }
+        .home-match-time .time {
+            font-size: 0.85rem;
+            color: var(--accent-dim);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .home-match-time .date {
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+        .home-match-teams .score {
+            color: var(--accent);
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            padding: 0 4px;
+        }
+        .home-match-comp {
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            min-width: 130px;
+        }
+        .home-match-teams {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .home-match-teams img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+        .home-match-teams .vs {
+            color: var(--text-dim);
+            font-weight: 300;
+            margin: 0 6px;
+        }
+        .home-match-status {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 4px;
+            min-width: 100px;
+            text-align: center;
+        }
         .status-live { background: rgba(224, 138, 138, 0.15); color: var(--red-soft); }
         .status-scheduled { background: rgba(232, 217, 138, 0.1); color: var(--accent); }
-        .home-match-link { color: var(--text-mid); text-decoration: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--border); transition: all 0.15s; }
-        .home-match-link:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-        .match { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 32px; margin-bottom: 12px; transition: all 0.2s; }
+        .status-finished { background: rgba(138, 138, 138, 0.1); color: var(--text-mid); }
+        .home-match-link {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            transition: all 0.15s;
+        }
+        .home-match-link:hover {
+            border-color: var(--accent-dim);
+            color: var(--accent);
+        }
+        .match { background: var(--bg-card); border: 1px solid var(--border); padding: 28px 32px; margin-bottom: 12px; }
         .match:hover { border-color: var(--border-strong); background: var(--bg-hover); }
         .match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
         .match-date { color: var(--white); }
         .match-xg { font-family: ui-monospace, monospace; color: var(--accent-dim); }
-        
         .team-row { display: flex; align-items: center; gap: 14px; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 24px; line-height: 1.2; color: var(--white); }
         .team-crest { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+        .form-dots {
+            display: inline-flex;
+            gap: 3px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .form-dot {
+            width: 8px; height: 8px;
+            border-radius: 1px;
+            display: inline-block;
+        }
+        .form-dot.V { background: var(--accent); }
+        .form-dot.N { background: var(--text-dim); }
+        .form-dot.D { background: var(--red-soft); }
+        .team-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .team-link:hover {
+            color: var(--accent);
+        }
         .team-vs { color: var(--text-dim); font-weight: 300; margin: 0 6px; font-size: 0.75em; }
-        
-        .probs-bar { margin-bottom: 12px; }
-        .probs-bar-header { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 10px; font-size: 0.72rem; color: var(--text-mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+        .probs-bar {
+            margin-bottom: 12px;
+        }
+        .probs-bar-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 0.72rem;
+            color: var(--text-mid);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
         .probs-bar-header span:nth-child(1) { text-align: left; }
         .probs-bar-header span:nth-child(2) { text-align: center; }
         .probs-bar-header span:nth-child(3) { text-align: right; }
-        .probs-bar-header .pct { color: var(--accent); font-weight: 800; }
+        .probs-bar-header .pct { color: var(--accent); font-weight: 800; font-variant-numeric: tabular-nums; }
         .probs-bar-header .pct.mid { color: var(--text-mid); }
-        .probs-track { display: flex; height: 10px; background: var(--border); overflow: hidden; gap: 2px; }
-        .probs-track .seg { height: 100%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .probs-bar-header .pct.low { color: var(--red-soft); }
+
+        .probs-track {
+            display: flex;
+            height: 10px;
+            background: var(--border);
+            overflow: hidden;
+            gap: 2px;
+        }
+        .probs-track .seg {
+            height: 100%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
         .probs-track .seg.high { background: var(--accent); }
         .probs-track .seg.mid { background: var(--text-mid); }
         .probs-track .seg.low { background: var(--red-soft); }
-        
-        .advanced-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 12px; }
-        .adv-stat { background: var(--bg); padding: 14px 16px; }
-        .adv-stat .label { font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; margin-bottom: 8px; }
-        .adv-stat .vals { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; }
+
+        .probs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        .prob { background: var(--bg); padding: 20px 16px; text-align: center; }
+        .prob .label { font-size: 0.65rem; color: var(--text-mid); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+        .prob .value { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+        .prob .value.high { color: var(--accent); }
+        .prob .value.mid { color: var(--text-mid); }
+        .prob .value.low { color: var(--red-soft); }
+        .adv-bar {
+            display: flex;
+            height: 4px;
+            background: var(--border);
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .adv-bar .seg {
+            height: 100%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .adv-bar .seg.yes { background: var(--accent); }
+        .adv-bar .seg.no { background: var(--text-dim); }
+        .advanced-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 12px;
+        }
+        .adv-stat {
+            background: var(--bg);
+            padding: 14px 16px;
+        }
+        .adv-stat .label {
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .adv-stat .vals {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
         .adv-stat .vals .yes { color: var(--accent); }
         .adv-stat .vals .no { color: var(--text-mid); }
-        .adv-stat .scores { display: flex; gap: 12px; font-size: 0.85rem; font-weight: 700; color: var(--text); }
-        .adv-stat .scores .pct { font-size: 0.68rem; color: var(--accent-dim); font-weight: 600; margin-left: 2px; }
-        
+        .adv-stat .scores {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }
+        .adv-stat .scores span {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .adv-stat .scores .pct {
+            font-size: 0.68rem;
+            color: var(--accent-dim);
+            font-weight: 600;
+        }
         .analyze-zone { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
         .analyze-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; background: transparent; border: 1px solid var(--border-strong); color: var(--text-mid); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: all 0.2s; }
         .analyze-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
         .analyze-btn:disabled { opacity: 0.5; }
         .ai-commentary { margin-top: 20px; padding: 20px 24px; background: #0f0f0f; border-left: 2px solid var(--accent); font-size: 0.92rem; line-height: 1.7; color: #c8c8c8; }
         .ai-label { display: inline-block; font-size: 0.62rem; font-weight: 800; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-right: 12px; }
-        
+        .empty { text-align: center; padding: 100px 20px; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .empty-icon { font-size: 2.5rem; margin-bottom: 20px; opacity: 0.25; }
         .disclaimer { margin-top: 64px; padding: 24px 28px; background: var(--bg-card); border: 1px solid var(--border); border-left: 2px solid var(--accent-dim); font-size: 0.78rem; color: var(--text-mid); line-height: 1.7; }
         .footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.3em; text-transform: uppercase; }
-    </style>
+    
+
+@media (max-width: 768px) {
+    /* 1. Conteneurs globaux */
+    body { padding: 0 !important; margin: 0 !important; }
+    .main { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; max-width: 100vw; overflow-x: hidden; }
+    .topbar { padding: 12px 16px !important; justify-content: center; gap: 8px; }
+    
+    /* 2. Hero compact */
+    .hero { padding: 24px 16px !important; text-align: center; }
+    .hero h1 { font-size: 2.2rem !important; margin-bottom: 8px !important; }
+    .hero p { font-size: 0.85rem !important; margin: 0 auto 16px auto !important; max-width: 90%; }
+    .hero-label { justify-content: center; margin-bottom: 12px !important; }
+    
+    /* 3. Stats en grille 3 colonnes (compact) */
+    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; width: 100%; }
+    .hero-stats { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 6px !important; width: 100%; border: none; background: transparent; }
+    .stat { border: 1px solid var(--border); border-radius: 8px; padding: 10px 4px; text-align: center; background: var(--bg-card); }
+    .stat-label { font-size: 0.55rem !important; letter-spacing: 0.5px !important; }
+    .stat-value { font-size: 0.95rem !important; }
+    
+    /* 4. Boutons d'action (même design que les stats) */
+    .hero-btn { width: 100% !important; padding: 14px !important; justify-content: center; border-radius: 8px; font-size: 0.7rem; margin-bottom: 0 !important; }
+    
+    /* 5. Recherche */
+    .search-input { padding: 14px 16px !important; font-size: 0.9rem; border-radius: 8px; margin-bottom: 16px !important; }
+    
+    /* 6. Ligues (Grille 2 colonnes, pas de débordement) */
+    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; border: none !important; margin-bottom: 24px; }
+    .competitions a { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px 6px !important; text-align: center; font-size: 0.7rem !important; white-space: normal; line-height: 1.2; }
+    
+    /* 7. Cartes de MATCH (Home) - Structure stricte */
+    .home-match { 
+        display: grid !important; 
+        grid-template-columns: 1fr auto !important;
+        grid-template-areas: 
+            "comp time"
+            "teams teams"
+            "status action" !important;
+        gap: 12px !important; 
+        padding: 16px !important; 
+        border-radius: 12px;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        align-items: center;
+    }
+    /* Ligne du haut : Championnat à gauche, Heure à droite */
+    .home-match-comp { grid-area: comp !important; text-align: left !important; font-size: 0.65rem !important; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+    .home-match-time { grid-area: time !important; display: flex; justify-content: flex-end; align-items: center; gap: 6px; }
+    .home-match-time .date { display: none; } /* On cache la date pour aérer */
+    .home-match-time .time { font-size: 0.85rem !important; color: var(--accent) !important; font-weight: bold; }
+    
+    /* Ligne du milieu : Équipes centrées */
+    .home-match-teams { grid-area: teams !important; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; font-size: 1rem !important; font-weight: 700; gap: 8px; padding: 8px 0; }
+    .home-match-teams img { width: 24px; height: 24px; }
+    
+    /* Ligne du bas : Statut à gauche, Bouton à droite */
+    .home-match-status { grid-area: status !important; justify-self: start !important; font-size: 0.6rem !important; padding: 4px 8px !important; border-radius: 4px; }
+    .home-match-link { grid-area: action !important; justify-self: end !important; padding: 8px 16px !important; font-size: 0.65rem !important; border-radius: 6px; }
+
+    /* 8. Cartes de MATCH (Page Ligue) */
+    .match { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; border-radius: 12px; margin-bottom: 12px; }
+    .team-row { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: 1.1rem !important; margin-bottom: 16px; }
+    .team-row .team-vs { margin: 4px 0; font-size: 0.8rem; }
+    .team-crest { width: 32px !important; height: 32px !important; }
+    
+    /* 9. Barres de probabilités */
+    .probs-bar-header { display: flex; justify-content: space-between; font-size: 0.7rem !important; margin-bottom: 8px; }
+    .probs-bar-header span:nth-child(2) { display: none; }
+    .probs-track { height: 8px; }
+    
+    /* 10. Stats avancées */
+    .advanced-stats { display: flex !important; flex-direction: column !important; gap: 8px; border: none; background: transparent; }
+    .adv-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg-card); }
+    
+    /* 11. Commentaire IA */
+    .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
+    .ai-label { font-size: 0.55rem !important; }
+}
+
+</style>
 </head>
 <body class="{{ current_theme }}">
 
@@ -117,29 +491,34 @@
             {% for code, name in languages.items() %}
             <a href="/set-lang/{{ code }}" class="lang-btn {% if current_lang == code %}active{% endif %}">{{ lang_flags[code] }}</a>
             {% endfor %}
-            <a href="/set-theme/{% if current_theme == 'dark' %}light{% else %}dark{% endif %}" class="theme-btn">{% if current_theme == 'dark' %}☀{% else %}☾{% endif %}</a>
         </div>
+        <a href="/set-theme/{% if current_theme == 'dark' %}light{% else %}dark{% endif %}" class="theme-btn" title="Toggle theme">
+            {% if current_theme == 'dark' %}☀{% else %}☾{% endif %}
+        </a>
     </div>
 
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-label">{{ t.hero_label }}</div>
-            <h1><a href="/" class="sokadata-link" style="text-decoration:none; color:inherit;">SOKA<span class="accent">DATA</span></a></h1>
+            <h1><a href="/" class="sokadata-link">SOKA<span class="accent">DATA</span></a></h1>
             <p>{{ t.hero_subtitle }}</p>
 
-            {% if is_home %}
-            <div class="hero-actions" style="margin-top: 28px;">
+            <div class="hero-stats-wrapper">
+                <div class="hero-stats">
+                <div class="stat"><div class="stat-label">{{ t.stat_leagues }}</div><div class="stat-value">{{ competitions|length }}</div></div>
+                <div class="stat"><div class="stat-label">{{ t.stat_model }}</div><div class="stat-value">Dixon-Coles</div></div>
+                <div class="stat"><div class="stat-label">{{ t.stat_ai }}</div><div class="stat-value">GPT-OSS</div></div>
+                </div>
+                {% if is_home %}
+                <a href="/compare" class="hero-btn hero-btn-secondary">
+                    <span>⚔</span>
+                    <span>Compare</span>
+                </a>
                 <a href="#matches-section" class="hero-btn">
                     <span>⏭</span>
                     <span>{{ section_label }}</span>
                 </a>
-            </div>
-            {% endif %}
-
-            <div class="hero-stats">
-                <div class="stat"><div class="stat-label">{{ t.stat_leagues }}</div><div class="stat-value">{{ competitions|length }}</div></div>
-                <div class="stat"><div class="stat-label">{{ t.stat_model }}</div><div class="stat-value">Dixon-Coles</div></div>
-                <div class="stat"><div class="stat-label">{{ t.stat_ai }}</div><div class="stat-value">GPT-OSS</div></div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -162,7 +541,7 @@
                 <span class="count">{{ predictions|length }} {{ t.section_matches }}</span>
             </div>
             {% for p in predictions %}
-            <div class="home-match">
+            <div class="home-match{% if p.status == 'IN_PLAY' or p.status == 'PAUSED' %} is-live{% endif %}">
                 <div class="home-match-time">
                     <div class="time">
                         {% if p.status == 'IN_PLAY' or p.status == 'PAUSED' %}<span class="live-dot"></span>{% endif %}{{ p.time }}
@@ -191,14 +570,14 @@
             {% endfor %}
         {% elif predictions %}
             <div class="section-title">
-                <h2>{{ selected_name }}</h2>
+                <h2>{% if selected_flag %}<span class="flag">{{ selected_flag }}</span>{% endif %}{{ selected_name }}</h2>
                 <span class="count">{{ predictions|length }} {{ t.section_matches }}</span>
             </div>
             {% for p in predictions %}
             {% set max_win = [p.prob_home, p.prob_away] | max %}
             {% set min_win = [p.prob_home, p.prob_away] | min %}
-            {% set h_class = 'high' if p.prob_home == max_win else ('low' if p.prob_home == min_win else 'mid') %}
-            {% set a_class = 'high' if p.prob_away == max_win else ('low' if p.prob_away == min_win else 'mid') %}
+            {% set h_class = 'high' if p.prob_home == max_win else 'low' %}
+            {% set a_class = 'high' if p.prob_away == max_win else 'low' %}
             <div class="match" data-index="{{ loop.index0 }}" data-competition="{{ selected }}">
                 <div class="match-header">
                     <span class="match-date">{{ p.date }}</span>
@@ -206,10 +585,10 @@
                 </div>
                 <div class="team-row">
                     {% if p.home_crest %}<img src="{{ p.home_crest }}" alt="{{ p.home }}" class="team-crest">{% endif %}
-                    <span>{{ p.home }}</span>
+                    <a href="/team/{{ p.home_id }}?from={{ selected }}" class="team-link">{{ p.home }}</a>
                     <span class="team-vs">vs</span>
                     {% if p.away_crest %}<img src="{{ p.away_crest }}" alt="{{ p.away }}" class="team-crest">{% endif %}
-                    <span>{{ p.away }}</span>
+                    <a href="/team/{{ p.away_id }}?from={{ selected }}" class="team-link">{{ p.away }}</a>
                 </div>
                 <div class="probs-bar">
                     <div class="probs-bar-header">
@@ -255,6 +634,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="analyze-zone">
                     <button class="analyze-btn" onclick="analyzeMatch(this)"><span class="bolt">⚡</span> {{ t.btn_analyze }}</button>
                 </div>
@@ -273,6 +653,7 @@
     </main>
 
     <script>
+        // Animation des barres au chargement
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 document.querySelectorAll('[data-width]').forEach(function(seg) {
@@ -281,6 +662,13 @@
                 });
             }, 100);
         });
+
+        // Auto-refresh de la home toutes les 60 secondes (uniquement sur /)
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+            let refreshTimer = setTimeout(() => {
+                window.location.reload();
+            }, 60000);
+        }
 
         async function analyzeMatch(btn) {
             const card = btn.closest('.match');
@@ -311,6 +699,91 @@
             }
         }
     </script>
+
+
+<style>
+/* === CORRECTIONS MOBILES (AJOUTÉ À LA FIN) === */
+
+
+@media (max-width: 768px) {
+    /* 1. Conteneurs globaux */
+    body { padding: 0 !important; margin: 0 !important; }
+    .main { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; max-width: 100vw; overflow-x: hidden; }
+    .topbar { padding: 12px 16px !important; justify-content: center; gap: 8px; }
+    
+    /* 2. Hero compact */
+    .hero { padding: 24px 16px !important; text-align: center; }
+    .hero h1 { font-size: 2.2rem !important; margin-bottom: 8px !important; }
+    .hero p { font-size: 0.85rem !important; margin: 0 auto 16px auto !important; max-width: 90%; }
+    .hero-label { justify-content: center; margin-bottom: 12px !important; }
+    
+    /* 3. Stats en grille 3 colonnes (compact) */
+    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; width: 100%; }
+    .hero-stats { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 6px !important; width: 100%; border: none; background: transparent; }
+    .stat { border: 1px solid var(--border); border-radius: 8px; padding: 10px 4px; text-align: center; background: var(--bg-card); }
+    .stat-label { font-size: 0.55rem !important; letter-spacing: 0.5px !important; }
+    .stat-value { font-size: 0.95rem !important; }
+    
+    /* 4. Boutons d'action (même design que les stats) */
+    .hero-btn { width: 100% !important; padding: 14px !important; justify-content: center; border-radius: 8px; font-size: 0.7rem; margin-bottom: 0 !important; }
+    
+    /* 5. Recherche */
+    .search-input { padding: 14px 16px !important; font-size: 0.9rem; border-radius: 8px; margin-bottom: 16px !important; }
+    
+    /* 6. Ligues (Grille 2 colonnes, pas de débordement) */
+    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; border: none !important; margin-bottom: 24px; }
+    .competitions a { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px 6px !important; text-align: center; font-size: 0.7rem !important; white-space: normal; line-height: 1.2; }
+    
+    /* 7. Cartes de MATCH (Home) - Structure stricte */
+    .home-match { 
+        display: grid !important; 
+        grid-template-columns: 1fr auto !important;
+        grid-template-areas: 
+            "comp time"
+            "teams teams"
+            "status action" !important;
+        gap: 12px !important; 
+        padding: 16px !important; 
+        border-radius: 12px;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        align-items: center;
+    }
+    /* Ligne du haut : Championnat à gauche, Heure à droite */
+    .home-match-comp { grid-area: comp !important; text-align: left !important; font-size: 0.65rem !important; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+    .home-match-time { grid-area: time !important; display: flex; justify-content: flex-end; align-items: center; gap: 6px; }
+    .home-match-time .date { display: none; } /* On cache la date pour aérer */
+    .home-match-time .time { font-size: 0.85rem !important; color: var(--accent) !important; font-weight: bold; }
+    
+    /* Ligne du milieu : Équipes centrées */
+    .home-match-teams { grid-area: teams !important; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; font-size: 1rem !important; font-weight: 700; gap: 8px; padding: 8px 0; }
+    .home-match-teams img { width: 24px; height: 24px; }
+    
+    /* Ligne du bas : Statut à gauche, Bouton à droite */
+    .home-match-status { grid-area: status !important; justify-self: start !important; font-size: 0.6rem !important; padding: 4px 8px !important; border-radius: 4px; }
+    .home-match-link { grid-area: action !important; justify-self: end !important; padding: 8px 16px !important; font-size: 0.65rem !important; border-radius: 6px; }
+
+    /* 8. Cartes de MATCH (Page Ligue) */
+    .match { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; border-radius: 12px; margin-bottom: 12px; }
+    .team-row { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: 1.1rem !important; margin-bottom: 16px; }
+    .team-row .team-vs { margin: 4px 0; font-size: 0.8rem; }
+    .team-crest { width: 32px !important; height: 32px !important; }
+    
+    /* 9. Barres de probabilités */
+    .probs-bar-header { display: flex; justify-content: space-between; font-size: 0.7rem !important; margin-bottom: 8px; }
+    .probs-bar-header span:nth-child(2) { display: none; }
+    .probs-track { height: 8px; }
+    
+    /* 10. Stats avancées */
+    .advanced-stats { display: flex !important; flex-direction: column !important; gap: 8px; border: none; background: transparent; }
+    .adv-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg-card); }
+    
+    /* 11. Commentaire IA */
+    .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
+    .ai-label { font-size: 0.55rem !important; }
+}
+
+</style>
 
 </body>
 </html>
