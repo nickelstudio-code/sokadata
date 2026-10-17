@@ -101,13 +101,22 @@
 
         .footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.3em; text-transform: uppercase; }
     
+
 @media (max-width: 768px) {
     .main { padding: 16px !important; }
-    .hero-inner { flex-direction: column; align-items: center; text-align: center; }
-    .team-meta { justify-content: center; flex-wrap: wrap; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .squad-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
-    .player { border: 1px solid var(--border); border-radius: 8px; }
+    .hero { padding: 24px 16px !important; }
+    .hero-inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    .team-logo-big { width: 80px; height: 80px; }
+    .team-info h1 { font-size: 1.8rem; }
+    .team-meta { justify-content: center; flex-wrap: wrap; gap: 12px; }
+    
+    /* Forme récente en grille 2 colonnes */
+    .form-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+    .form-item { padding: 12px !important; border-radius: 8px; }
+    
+    /* Effectif en 1 colonne */
+    .squad-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; border: none !important; background: transparent !important; }
+    .player { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px !important; }
 }
 
 </style>
@@ -200,13 +209,22 @@
 <style>
 /* === CORRECTIONS MOBILES (AJOUTÉ À LA FIN) === */
 
+
 @media (max-width: 768px) {
     .main { padding: 16px !important; }
-    .hero-inner { flex-direction: column; align-items: center; text-align: center; }
-    .team-meta { justify-content: center; flex-wrap: wrap; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .squad-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
-    .player { border: 1px solid var(--border); border-radius: 8px; }
+    .hero { padding: 24px 16px !important; }
+    .hero-inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    .team-logo-big { width: 80px; height: 80px; }
+    .team-info h1 { font-size: 1.8rem; }
+    .team-meta { justify-content: center; flex-wrap: wrap; gap: 12px; }
+    
+    /* Forme récente en grille 2 colonnes */
+    .form-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+    .form-item { padding: 12px !important; border-radius: 8px; }
+    
+    /* Effectif en 1 colonne */
+    .squad-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; border: none !important; background: transparent !important; }
+    .player { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px !important; }
 }
 
 </style>
