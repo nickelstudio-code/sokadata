@@ -73,6 +73,9 @@ def home(request: Request):
         predictions = []
         print(f"Erreur home : {e}")
 
+    # Compter les lives
+    live_count = sum(1 for p in predictions if p.get("status") in ("IN_PLAY", "PAUSED"))
+
     ctx = base_context(request)
     ctx.update({
         "predictions": predictions,
@@ -83,6 +86,7 @@ def home(request: Request):
         "is_home": True,
         "section_label": section_label,
         "is_today": is_today,
+        "live_count": live_count,
     })
     return templates.TemplateResponse("index.html", ctx)
 

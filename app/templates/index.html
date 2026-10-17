@@ -785,5 +785,36 @@
 
 </style>
 
+
+    <script>
+        function filterMatches(status) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.status-filter').forEach(function(btn) {
+                btn.style.background = 'transparent';
+                btn.style.color = 'var(--text-mid)';
+                btn.style.border = '1px solid var(--border)';
+                btn.classList.remove('active');
+            });
+            var activeBtn = document.querySelector('.status-filter[data-filter="' + status + '"]');
+            if (activeBtn) {
+                activeBtn.style.background = 'var(--accent)';
+                activeBtn.style.color = 'var(--bg)';
+                activeBtn.style.border = 'none';
+                activeBtn.classList.add('active');
+            }
+
+            // Filtrer les cartes
+            document.querySelectorAll('.home-match').forEach(function(card) {
+                var isLive = card.querySelector('.status-live') !== null;
+                var cardStatus = isLive ? 'live' : 'upcoming';
+                
+                if (status === 'all' || cardStatus === status) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
