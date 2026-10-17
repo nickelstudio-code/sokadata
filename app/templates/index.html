@@ -493,6 +493,23 @@
     .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
 }
 
+
+@media (max-width: 768px) {
+    /* Correction ciblée : on empêche les 3 blocs de déborder */
+    .hero-stats {
+        grid-template-columns: 1fr 1fr 1fr !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    .stat {
+        padding: 10px 2px !important;
+        min-width: 0 !important;
+    }
+    .stat-value {
+        font-size: 0.85rem !important;
+    }
+}
+
 </style>
 </head>
 <body class="{{ current_theme }}">
@@ -797,6 +814,23 @@
     .advanced-stats { display: flex !important; flex-direction: column !important; gap: 8px; border: none; background: transparent; }
     .adv-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg-card); }
     .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
+}
+
+
+@media (max-width: 768px) {
+    /* Correction ciblée : on empêche les 3 blocs de déborder */
+    .hero-stats {
+        grid-template-columns: 1fr 1fr 1fr !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    .stat {
+        padding: 10px 2px !important;
+        min-width: 0 !important;
+    }
+    .stat-value {
+        font-size: 0.85rem !important;
+    }
 }
 
 </style>
