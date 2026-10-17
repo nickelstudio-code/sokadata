@@ -139,10 +139,12 @@ def predict_matches_list(matches):
             comp_name = m.get("competition", {}).get("name", "")
             from datetime import datetime
 
-            utc_dt = datetime.strptime(m["utcDate"], "%Y-%m-%dT%H:%M:%SZ")
-            match_date_iso = utc_dt.strftime("%Y-%m-%d")
-            match_date_display = utc_dt.strftime("%a %d %b").capitalize()
-            match_time = utc_dt.strftime("%H:%M")
+            from datetime import datetime, timedelta, timezone
+            utc_dt = datetime.strptime(m["utcDate"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+            tz_tz = utc_dt.astimezone(timezone(timedelta(hours=3)))
+            match_date_iso = tz_tz.strftime("%Y-%m-%d")
+            match_date_display = tz_tz.strftime("%a %d %b").capitalize()
+            match_time = tz_tz.strftime("%H:%M")
             status = m.get("status", "SCHEDULED")
 
             # Statut plus lisible

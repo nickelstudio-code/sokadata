@@ -412,102 +412,43 @@
 
 
 
+
 @media (max-width: 768px) {
-    /* 1. Structure globale */
-    body { padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
-    .main { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; }
-    .hero { padding: 24px 16px !important; text-align: center; }
-    .hero h1 { font-size: 2.2rem !important; margin-bottom: 8px !important; }
-    .hero p { font-size: 0.85rem !important; margin: 0 auto 20px auto !important; max-width: 90%; }
+    html, body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+    .main { padding: 16px; width: 100%; box-sizing: border-box; }
 
-    /* 2. Le bloc des stats (Le problème principal) */
-    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; }
-    .hero-stats { 
-        display: grid !important; 
-        grid-template-columns: repeat(3, 1fr) !important; /* Force 3 colonnes égales */
-        gap: 8px !important; 
-        width: 100% !important; 
-        border: none; 
-        background: transparent; 
-        box-sizing: border-box;
-    }
-    .stat { 
-        border: 1px solid var(--border); 
-        border-radius: 8px; 
-        padding: 12px 4px; 
-        text-align: center; 
-        background: var(--bg-card);
-        box-sizing: border-box;
-    }
-    .stat-label { font-size: 0.55rem !important; letter-spacing: 0.5px !important; }
-    .stat-value { font-size: 0.9rem !important; }
+    /* Grille 3 colonnes pour les stats */
+    .hero-stats { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; width: 100% !important; }
+    .stat { width: 100% !important; box-sizing: border-box; padding: 10px 2px !important; text-align: center; border: 1px solid var(--border); border-radius: 8px; }
+    .stat-value { font-size: 0.85rem !important; }
+    .stat-label { font-size: 0.55rem !important; }
 
-    /* 3. Les boutons Compare et Prochains matchs (Maintenant alignés) */
-    .hero-btn { 
-        width: 100% !important; 
-        padding: 14px !important; 
-        justify-content: center; 
-        border-radius: 8px; 
-        font-size: 0.7rem; 
-        margin: 0 !important;
-        box-sizing: border-box;
-    }
+    /* Boutons pleine largeur */
+    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .hero-btn { width: 100% !important; box-sizing: border-box; padding: 12px; justify-content: center; }
+    .search-input { width: 100% !important; box-sizing: border-box; }
+    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px; width: 100%; }
 
-    /* 4. Recherche et ligues */
-    .search-input { padding: 14px 16px !important; font-size: 0.9rem; border-radius: 8px; margin-bottom: 16px !important; width: 100%; box-sizing: border-box; }
-    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; border: none !important; margin-bottom: 24px; width: 100%; box-sizing: border-box; }
-    .competitions a { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px 6px !important; text-align: center; font-size: 0.7rem !important; white-space: normal; line-height: 1.2; }
-
-    /* 5. Cartes de matchs (Plus compactes) */
-    .home-match { 
-        display: grid !important; 
-        grid-template-columns: 1fr auto !important;
-        grid-template-areas: "comp time" "teams teams" "status action" !important;
-        gap: 10px !important; 
-        padding: 14px !important; 
-        border-radius: 12px;
+    /* CARTES DE MATCH : Empilées proprement */
+    .home-match {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 16px !important;
         width: 100% !important;
         box-sizing: border-box !important;
-        align-items: center;
+        gap: 10px !important;
     }
-    .home-match-comp { grid-area: comp !important; text-align: left !important; font-size: 0.65rem !important; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
-    .home-match-time { grid-area: time !important; display: flex; justify-content: flex-end; align-items: center; gap: 6px; }
-    .home-match-time .date { display: none; }
-    .home-match-time .time { font-size: 0.85rem !important; color: var(--accent) !important; font-weight: bold; }
     
-    /* Équipes sur une seule ligne grâce à font-size plus petit */
-    .home-match-teams { grid-area: teams !important; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; font-size: 0.85rem !important; font-weight: 700; gap: 6px; padding: 4px 0; white-space: nowrap; }
-    .home-match-teams img { width: 20px; height: 20px; }
-    
-    .home-match-status { grid-area: status !important; justify-self: start !important; font-size: 0.6rem !important; padding: 4px 8px !important; border-radius: 4px; }
-    .home-match-link { grid-area: action !important; justify-self: end !important; padding: 8px 14px !important; font-size: 0.65rem !important; border-radius: 6px; }
-
-    /* Cartes de match détaillées (Page ligue) */
-    .match { padding: 16px !important; box-sizing: border-box !important; border-radius: 12px; margin-bottom: 12px; }
-    .team-row { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-size: 1rem !important; margin-bottom: 12px; }
-    .team-crest { width: 28px !important; height: 28px !important; }
-    .probs-bar-header { display: flex; justify-content: space-between; font-size: 0.7rem !important; margin-bottom: 8px; }
-    .probs-bar-header span:nth-child(2) { display: none; }
-    .advanced-stats { display: flex !important; flex-direction: column !important; gap: 8px; border: none; background: transparent; }
-    .adv-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg-card); }
-    .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
-}
-
-
-@media (max-width: 768px) {
-    /* Correction ciblée : on empêche les 3 blocs de déborder */
-    .hero-stats {
-        grid-template-columns: 1fr 1fr 1fr !important;
-        width: 100% !important;
-        min-width: 0 !important;
-    }
-    .stat {
-        padding: 10px 2px !important;
-        min-width: 0 !important;
-    }
-    .stat-value {
-        font-size: 0.85rem !important;
-    }
+    .home-match-time { display: flex; justify-content: center; gap: 6px; order: 1; }
+    .home-match-time .time { font-size: 0.95rem; color: var(--accent); font-weight: bold; }
+    .home-match-time .date { font-size: 0.75rem; color: var(--text-mid); }
+    .home-match-comp { order: 2; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-top: -4px; }
+    .home-match-teams { order: 3; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; font-size: 1.05rem; font-weight: 700; }
+    .home-match-teams img { width: 24px; height: 24px; }
+    .home-match-status { order: 4; font-size: 0.65rem; padding: 4px 10px; }
+    .home-match-link { order: 5; width: 100%; box-sizing: border-box; padding: 10px; font-size: 0.75rem; text-align: center; border-radius: 6px; }
 }
 
 </style>
@@ -735,102 +676,43 @@
 
 
 
+
 @media (max-width: 768px) {
-    /* 1. Structure globale */
-    body { padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
-    .main { padding: 16px !important; width: 100% !important; box-sizing: border-box !important; }
-    .hero { padding: 24px 16px !important; text-align: center; }
-    .hero h1 { font-size: 2.2rem !important; margin-bottom: 8px !important; }
-    .hero p { font-size: 0.85rem !important; margin: 0 auto 20px auto !important; max-width: 90%; }
+    html, body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+    .main { padding: 16px; width: 100%; box-sizing: border-box; }
 
-    /* 2. Le bloc des stats (Le problème principal) */
-    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; }
-    .hero-stats { 
-        display: grid !important; 
-        grid-template-columns: repeat(3, 1fr) !important; /* Force 3 colonnes égales */
-        gap: 8px !important; 
-        width: 100% !important; 
-        border: none; 
-        background: transparent; 
-        box-sizing: border-box;
-    }
-    .stat { 
-        border: 1px solid var(--border); 
-        border-radius: 8px; 
-        padding: 12px 4px; 
-        text-align: center; 
-        background: var(--bg-card);
-        box-sizing: border-box;
-    }
-    .stat-label { font-size: 0.55rem !important; letter-spacing: 0.5px !important; }
-    .stat-value { font-size: 0.9rem !important; }
+    /* Grille 3 colonnes pour les stats */
+    .hero-stats { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; width: 100% !important; }
+    .stat { width: 100% !important; box-sizing: border-box; padding: 10px 2px !important; text-align: center; border: 1px solid var(--border); border-radius: 8px; }
+    .stat-value { font-size: 0.85rem !important; }
+    .stat-label { font-size: 0.55rem !important; }
 
-    /* 3. Les boutons Compare et Prochains matchs (Maintenant alignés) */
-    .hero-btn { 
-        width: 100% !important; 
-        padding: 14px !important; 
-        justify-content: center; 
-        border-radius: 8px; 
-        font-size: 0.7rem; 
-        margin: 0 !important;
-        box-sizing: border-box;
-    }
+    /* Boutons pleine largeur */
+    .hero-stats-wrapper { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .hero-btn { width: 100% !important; box-sizing: border-box; padding: 12px; justify-content: center; }
+    .search-input { width: 100% !important; box-sizing: border-box; }
+    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px; width: 100%; }
 
-    /* 4. Recherche et ligues */
-    .search-input { padding: 14px 16px !important; font-size: 0.9rem; border-radius: 8px; margin-bottom: 16px !important; width: 100%; box-sizing: border-box; }
-    .competitions { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; border: none !important; margin-bottom: 24px; width: 100%; box-sizing: border-box; }
-    .competitions a { border: 1px solid var(--border) !important; border-radius: 8px !important; padding: 12px 6px !important; text-align: center; font-size: 0.7rem !important; white-space: normal; line-height: 1.2; }
-
-    /* 5. Cartes de matchs (Plus compactes) */
-    .home-match { 
-        display: grid !important; 
-        grid-template-columns: 1fr auto !important;
-        grid-template-areas: "comp time" "teams teams" "status action" !important;
-        gap: 10px !important; 
-        padding: 14px !important; 
-        border-radius: 12px;
+    /* CARTES DE MATCH : Empilées proprement */
+    .home-match {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 16px !important;
         width: 100% !important;
         box-sizing: border-box !important;
-        align-items: center;
+        gap: 10px !important;
     }
-    .home-match-comp { grid-area: comp !important; text-align: left !important; font-size: 0.65rem !important; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
-    .home-match-time { grid-area: time !important; display: flex; justify-content: flex-end; align-items: center; gap: 6px; }
-    .home-match-time .date { display: none; }
-    .home-match-time .time { font-size: 0.85rem !important; color: var(--accent) !important; font-weight: bold; }
     
-    /* Équipes sur une seule ligne grâce à font-size plus petit */
-    .home-match-teams { grid-area: teams !important; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; font-size: 0.85rem !important; font-weight: 700; gap: 6px; padding: 4px 0; white-space: nowrap; }
-    .home-match-teams img { width: 20px; height: 20px; }
-    
-    .home-match-status { grid-area: status !important; justify-self: start !important; font-size: 0.6rem !important; padding: 4px 8px !important; border-radius: 4px; }
-    .home-match-link { grid-area: action !important; justify-self: end !important; padding: 8px 14px !important; font-size: 0.65rem !important; border-radius: 6px; }
-
-    /* Cartes de match détaillées (Page ligue) */
-    .match { padding: 16px !important; box-sizing: border-box !important; border-radius: 12px; margin-bottom: 12px; }
-    .team-row { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-size: 1rem !important; margin-bottom: 12px; }
-    .team-crest { width: 28px !important; height: 28px !important; }
-    .probs-bar-header { display: flex; justify-content: space-between; font-size: 0.7rem !important; margin-bottom: 8px; }
-    .probs-bar-header span:nth-child(2) { display: none; }
-    .advanced-stats { display: flex !important; flex-direction: column !important; gap: 8px; border: none; background: transparent; }
-    .adv-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg-card); }
-    .ai-commentary { font-size: 0.85rem !important; padding: 16px !important; line-height: 1.5; border-radius: 8px; }
-}
-
-
-@media (max-width: 768px) {
-    /* Correction ciblée : on empêche les 3 blocs de déborder */
-    .hero-stats {
-        grid-template-columns: 1fr 1fr 1fr !important;
-        width: 100% !important;
-        min-width: 0 !important;
-    }
-    .stat {
-        padding: 10px 2px !important;
-        min-width: 0 !important;
-    }
-    .stat-value {
-        font-size: 0.85rem !important;
-    }
+    .home-match-time { display: flex; justify-content: center; gap: 6px; order: 1; }
+    .home-match-time .time { font-size: 0.95rem; color: var(--accent); font-weight: bold; }
+    .home-match-time .date { font-size: 0.75rem; color: var(--text-mid); }
+    .home-match-comp { order: 2; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-top: -4px; }
+    .home-match-teams { order: 3; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; font-size: 1.05rem; font-weight: 700; }
+    .home-match-teams img { width: 24px; height: 24px; }
+    .home-match-status { order: 4; font-size: 0.65rem; padding: 4px 10px; }
+    .home-match-link { order: 5; width: 100%; box-sizing: border-box; padding: 10px; font-size: 0.75rem; text-align: center; border-radius: 6px; }
 }
 
 </style>
