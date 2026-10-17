@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ team_name }} — SOKADATA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0a0a0a; --bg-card: #131313; --bg-hover: #1a1a1a;
+            --border: #232323; --border-strong: #333;
+            --text: #ffffff; --text-mid: #8a8a8a; --text-dim: #5a5a5a;
+            --accent: #e8d98a; --accent-dim: #b8ac6a;
+            --red-soft: #e08a8a; --white: #ffffff;
+        }
+        body.light {
+            --bg: #fafafa; --bg-card: #ffffff; --bg-hover: #f5f5f5;
+            --border: #e5e5e5; --border-strong: #d0d0d0;
+            --text: #0a0a0a; --text-mid: #666; --text-dim: #999;
+            --accent: #a89430; --accent-dim: #8a7a20;
+            --red-soft: #c05a5a; --white: #0a0a0a;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; }
+        .topbar { max-width: 1240px; margin: 0 auto; padding: 20px 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 4px; }
+        .back-link { color: var(--text-mid); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--border); padding: 8px 16px; transition: all 0.15s; }
+        .back-link:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .lang-switch { display: flex; gap: 4px; }
+        .lang-btn { padding: 8px 14px; background: transparent; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.15s; }
+        .lang-btn:hover { border-color: var(--border-strong); color: var(--text); }
+        .theme-btn {
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1;
+            transition: all 0.15s;
+        }
+        .theme-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+        .lang-btn.active { background: var(--white); color: var(--bg); border-color: var(--white); }
+
+        .hero { border-bottom: 1px solid var(--border); padding: 48px 24px 48px; position: relative; }
+        .hero::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 80px; height: 1px; background: var(--accent); }
+        .hero-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+        .team-logo-big { width: 120px; height: 120px; object-fit: contain; flex-shrink: 0; }
+        .team-info { flex: 1; min-width: 280px; }
+        .team-info h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; color: var(--white); margin-bottom: 16px; }
+        .team-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.85rem; color: var(--text-mid); }
+        .team-meta div { display: flex; flex-direction: column; gap: 4px; }
+        .team-meta .label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+        .team-meta .value { color: var(--text); font-weight: 700; }
+
+        .main { max-width: 1240px; margin: 0 auto; padding: 40px 24px 100px; }
+        .section-title { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .section-title h2 { font-size: 0.72rem; font-weight: 700; color: var(--text); letter-spacing: 3px; text-transform: uppercase; }
+        .section-title .count { font-size: 0.72rem; color: var(--text-dim); }
+
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 40px; }
+        .form-item { background: var(--bg-card); padding: 16px 20px; }
+        .form-item .result { font-size: 1.4rem; font-weight: 900; margin-bottom: 8px; }
+        .form-item .result.V { color: var(--accent); }
+        .form-item .result.N { color: #ffffff; }
+        .form-item .result.D { color: var(--red-soft); }
+        .form-item .opp { font-size: 0.85rem; color: var(--text); font-weight: 500; }
+
+        .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 40px; }
+        .player {
+            background: var(--bg-card); padding: 14px 18px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .player-avatar {
+            width: 48px; height: 48px;
+            flex-shrink: 0;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .player-avatar svg {
+            width: 100%; height: 100%;
+            fill: var(--text-mid);
+            transition: fill 0.15s;
+        }
+        .player:hover .player-avatar svg {
+            fill: var(--accent);
+        }
+        .player-avatar .pos-emoji {
+            position: absolute; bottom: -2px; right: -2px;
+            font-size: 0.72rem;
+            background: var(--bg-card); border-radius: 50%;
+            padding: 3px;
+            line-height: 1;
+            border: 1px solid var(--border);
+        }
+        .player-info { flex: 1; min-width: 0; }
+        .player .name { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .player .pos { font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+        .player .nat { font-size: 0.72rem; color: var(--text-mid); margin-top: 4px; }
+
+        .summary-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 2px solid var(--accent); padding: 20px 24px; font-size: 0.92rem; line-height: 1.7; color: #c8c8c8; margin-bottom: 40px; }
+        .summary-box strong { color: var(--accent); font-weight: 700; }
+
+        .footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.3em; text-transform: uppercase; }
+    </style>
+</head>
+<body class="{{ current_theme }}">
+
+    <div class="topbar">
+        <a href="{% if from_comp %}/analyze/{{ from_comp }}{% else %}/{% endif %}" class="back-link">← {{ t.back or 'Back' }}</a>
+        <div class="lang-switch">
+            {% for code, name in languages.items() %}
+            <a href="/set-lang/{{ code }}" class="lang-btn {% if current_lang == code %}active{% endif %}">{{ lang_flags[code] }}</a>
+            {% endfor %}
+            <a href="/set-theme/{% if current_theme == 'dark' %}light{% else %}dark{% endif %}" class="theme-btn">{% if current_theme == 'dark' %}☀{% else %}☾{% endif %}</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-inner">
+            {% if team.crest %}<img src="{{ team.crest }}" alt="{{ team_name }}" class="team-logo-big">{% endif %}
+            <div class="team-info">
+                <h1>{{ team_name }}</h1>
+                <div class="team-meta">
+                    {% if team.tla %}<div><span class="label">Code</span><span class="value">{{ team.tla }}</span></div>{% endif %}
+                    {% if team.founded %}<div><span class="label">Founded</span><span class="value">{{ team.founded }}</span></div>{% endif %}
+                    {% if team.venue %}<div><span class="label">Stadium</span><span class="value">{{ team.venue }}</span></div>{% endif %}
+                    {% if team.clubColors %}<div><span class="label">Colors</span><span class="value">{{ team.clubColors }}</span></div>{% endif %}
+                    {% if team.coach %}<div><span class="label">Coach</span><span class="value">{{ team.coach.name }}</span></div>{% endif %}
+                    {% if team.area %}<div><span class="label">Country</span><span class="value">{{ team.area.name }}</span></div>{% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+
+        <div class="section-title">
+            <h2>Recent Form</h2>
+            <span class="count">{{ team_form.summary }}</span>
+        </div>
+        <div class="form-grid">
+            {% for r in team_form.results %}
+            {% set parts = r.split(' ') %}
+            {% set result = parts[0] %}
+            <div class="form-item">
+                <div class="result {{ result }}">{{ result }}</div>
+                <div class="opp">{{ r }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if team.squad %}
+        <div class="section-title">
+            <h2>Squad</h2>
+            <span class="count">{{ team.squad|length }} players</span>
+        </div>
+        <div class="squad-grid">
+            {% for p in team.squad %}
+            {% set initial = p.name[0] if p.name else '?' %}
+            {% set parts = p.name.split(' ') if p.name else [] %}
+            {% set initials = (parts[0][0] + parts[-1][0]) if parts|length >= 2 else initial %}
+            {% set pos = (p.position or '').lower() %}
+            {% set emoji = '🧤' if 'goalkeeper' in pos else ('🛡️' if 'defence' in pos or 'defender' in pos else ('🎯' if 'offence' in pos or 'forward' in pos or 'attack' in pos else '⚽')) %}
+            <div class="player">
+                <div class="player-avatar">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="20" r="12"/>
+                        <path d="M32 34c-14 0-24 8-24 22 0 4 3 6 7 6h34c4 0 7-2 7-6 0-14-10-22-24-22z"/>
+                    </svg>
+                    <span class="pos-emoji">{{ emoji }}</span>
+                </div>
+                <div class="player-info">
+                    <div class="name">{{ p.name }}</div>
+                    <div class="pos">{{ p.position or 'N/A' }}</div>
+                    <div class="nat">{{ p.flag or '' }} {{ p.nationality or '' }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="summary-box">
+            <strong>Note —</strong> Cette page présente les informations officielles de l'équipe (stade, entraîneur, effectif) ainsi que sa forme récente. Pour les prédictions de matchs, retournez sur la page d'analyse du championnat concerné.
+        </div>
+
+        <div class="footer">SOKADATA © 2026</div>
+
+    </main>
+
+</body>
+</html>
