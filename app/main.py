@@ -219,3 +219,23 @@ def set_lang(lang: str, request: Request):
     response = RedirectResponse(url=referer, status_code=303)
     response.set_cookie("lang", lang, max_age=60*60*24*365)
     return response
+
+@app.get("/premium", response_class=HTMLResponse)
+def premium_page(request: Request):
+    ctx = base_context(request)
+    return templates.TemplateResponse("premium.html", ctx)
+
+
+@app.post("/api/verify-code")
+def verify_code(request: Request, payload: dict):
+    VALID_CODES = ["SOKA2026", "PREMIUM100", "TANZANIA10", "SOKADATA-VIP"]
+    code = payload.get("code", "").strip().upper()
+    
+    if code in VALID_CODES:
+        from fastapi.responses import JSONResponse
+        response = JSONResponse({"success": True})
+        response.set_cookie("premium_access", "true", max_age=60*60*24*30)
+        return response
+    
+    from fastapi.responses import JSONResponse
+    return JSONResponse({"success": False})
