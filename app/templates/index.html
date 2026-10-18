@@ -346,6 +346,41 @@
         }
         .adv-bar .seg.yes { background: var(--accent); }
         .adv-bar .seg.no { background: var(--text-dim); }
+        .premium-blur {
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-blur > *:not(.premium-overlay) {
+            filter: blur(6px);
+            user-select: none;
+            pointer-events: none;
+        }
+        .premium-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.7);
+            text-decoration: none;
+            z-index: 10;
+            transition: background 0.15s;
+        }
+        .premium-overlay:hover {
+            background: rgba(10, 10, 10, 0.85);
+        }
+        .premium-lock {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .premium-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
         .advanced-stats {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -602,7 +637,13 @@
                         <div class="seg {{ a_class }}" style="width: 0%" data-width="{{ p.prob_away }}"></div>
                     </div>
                 </div>
-                <div class="advanced-stats">
+                <div class="advanced-stats {% if not request.cookies.get('premium_access') == 'true' %}premium-blur{% endif %}">
+                    {% if not request.cookies.get('premium_access') == 'true' %}
+                    <a href="/premium" class="premium-overlay">
+                        <span class="premium-lock">🔒</span>
+                        <span class="premium-text">Débloquer les stats</span>
+                    </a>
+                    {% endif %}
                     <div class="adv-stat">
                         <div class="label">BTTS</div>
                         <div class="vals">
