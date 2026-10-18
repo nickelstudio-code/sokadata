@@ -667,13 +667,13 @@
                         <div class="seg {{ a_class }}" style="width: 0%" data-width="{{ p.prob_away }}"></div>
                     </div>
                 </div>
-                <div class="advanced-stats {% if not request.cookies.get('premium_access') == 'true' %}premium-blur{% endif %}">
-                    {% if not request.cookies.get('premium_access') == 'true' %}
-                    <a href="/premium" class="premium-overlay">
-                        <span class="premium-lock">🔒</span>
-                        <span class="premium-text">Débloquer les stats</span>
-                    </a>
-                    {% endif %}
+              <div class="advanced-stats" style="position: relative; overflow: hidden;">
+    {% if not request.cookies.get('premium_access') == 'true' %}
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(10,10,10,0.85); z-index: 10; border-radius: 8px;">
+        <div style="font-size: 1.5rem; margin-bottom: 8px;">🔒</div>
+        <a href="/premium" style="color: #e8d98a; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; text-decoration: none;">DÉBLOQUER LES STATS</a>
+    </div>
+    {% endif %}
                     <div class="adv-stat">
                         <div class="label">BTTS</div>
                         <div class="vals">
