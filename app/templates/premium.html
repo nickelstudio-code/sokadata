@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOKADATA Premium</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0a0a0a; --bg-card: #131313; --border: #232323;
+            --text: #ffffff; --text-mid: #8a8a8a; --accent: #e8d98a; --red-soft: #e08a8a;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; display: flex; justify-content: center; align-items: center; padding: 24px; }
+        .container { max-width: 480px; width: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; }
+        h1 { font-size: 2rem; font-weight: 900; margin-bottom: 8px; color: var(--accent); }
+        p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 24px; }
+        .price { font-size: 3rem; font-weight: 900; color: var(--text); margin-bottom: 4px; }
+        .price span { font-size: 1rem; color: var(--text-mid); font-weight: 400; }
+        .features { text-align: left; margin-bottom: 32px; }
+        .features li { list-style: none; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text); display: flex; align-items: center; gap: 12px; }
+        .features li::before { content: "✓"; color: var(--accent); font-weight: bold; }
+        .payment-box { background: var(--bg); border: 1px dashed var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: left; }
+        .payment-box strong { color: var(--accent); display: block; margin-bottom: 4px; }
+        .payment-box code { font-size: 1.1rem; font-weight: bold; color: var(--text); background: var(--border); padding: 2px 8px; border-radius: 4px; }
+        .code-input { display: flex; gap: 8px; margin-top: 8px; }
+        .code-input input { flex: 1; padding: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; text-transform: uppercase; }
+        .code-input button { padding: 14px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 8px; font-weight: 800; cursor: pointer; transition: all 0.15s; }
+        .code-input button:hover { opacity: 0.9; }
+        .back-link { display: inline-block; margin-top: 24px; color: var(--text-mid); text-decoration: none; font-size: 0.8rem; }
+        .back-link:hover { color: var(--text); }
+        .error { color: var(--red-soft); font-size: 0.8rem; margin-top: 8px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SOKADATA PREMIUM</h1>
+        <p>Débloquez la puissance totale de l'IA.</p>
+        
+        <div class="price">10 000 TZS<span> / mois</span></div>
+
+        <ul class="features">
+            <li>Analyses IA illimitées</li>
+            <li>Statistiques avancées (BTTS, Top Scores)</li>
+            <li>Comparateur d'équipes</li>
+            <li>Accès à toutes les ligues</li>
+        </ul>
+
+        <div class="payment-box">
+            <strong>1. Payez via M-Pesa / Airtel</strong>
+            <p style="margin-bottom: 8px; font-size: 0.8rem;">Envoyez 10 000 TZS au numéro suivant :</p>
+            <code>0796224479</code> <!-- À REMPLACER PAR TON NUMÉRO -->
+        </div>
+
+        <div style="text-align: left; margin-bottom: 8px;">
+            <strong>2. Entrez votre code d'accès</strong>
+            <p style="margin-bottom: 8px; font-size: 0.8rem;">Après le paiement, vous recevrez un code par SMS/WhatsApp.</p>
+        </div>
+
+        <form class="code-input" onsubmit="submitCode(event)">
+            <input type="text" id="access-code" placeholder="EX: SOKA2026" required>
+            <button type="submit">ACTIVER</button>
+        </form>
+        <div id="error-msg" class="error">Code invalide. Veuillez vérifier.</div>
+
+        <a href="/" class="back-link">← Retour à l'accueil</a>
+    </div>
+
+    <script>
+        function submitCode(e) {
+            e.preventDefault();
+            const code = document.getElementById('access-code').value.trim().toUpperCase();
+            const errorDiv = document.getElementById('error-msg');
+            
+            // On demande au serveur de valider le code
+            fetch('/api/verify-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: code })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/';
+                } else {
+                    errorDiv.style.display = 'block';
+                }
+            })
+            .catch(() => {
+                errorDiv.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
