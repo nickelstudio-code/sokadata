@@ -685,6 +685,13 @@
 
             try {
                 const resp = await fetch(`/analyze/${competition}/comment/${index}`);
+                
+                // Si le serveur dit que c'est réservé aux premium (403)
+                if (resp.status === 403) {
+                    window.location.href = '/premium';
+                    return;
+                }
+
                 const data = await resp.json();
                 if (data.commentary) {
                     const zone = card.querySelector('.analyze-zone');

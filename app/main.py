@@ -127,6 +127,11 @@ def comment(competition_code: str, match_index: int, request: Request):
     if competition_code not in COMPETITIONS:
         raise HTTPException(status_code=404, detail="Competition inconnue")
 
+    # VÉRIFICATION PREMIUM
+    is_premium = request.cookies.get("premium_access") == "true"
+    if not is_premium:
+        raise HTTPException(status_code=403, detail="premium_required")
+
     try:
         predictions = predict_upcoming(competition_code, limit=20)
     except Exception as e:
